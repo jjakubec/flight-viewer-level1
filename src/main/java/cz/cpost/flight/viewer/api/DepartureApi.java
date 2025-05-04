@@ -18,6 +18,10 @@ import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * API controller for fetching flight departure data.
+ * This controller handles HTTP GET requests to the /api/departures endpoint.
+ */
 @RestController
 @RequestMapping("/api")
 public class DepartureApi {

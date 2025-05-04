@@ -8,12 +8,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
-import reactor.util.retry.Retry;
 
-import java.time.Duration;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Service for fetching flight departure data from the OpenSky Network API.
+ * This service uses both RestTemplate and WebClient to demonstrate two different approaches to making HTTP requests.
+ */
 @Service
 public class DepartureService {
 

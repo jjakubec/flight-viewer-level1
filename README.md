@@ -28,7 +28,33 @@ mvn test
 
 This command will execute all the tests in the project.
 
-## API Documentation
+## 📖 Generate and Open Javadoc Documentation
+
+### ✅ 1. Generate Javadoc
+Run the following command in IntelliJ IDEA terminal:
+
+```sh
+mvn javadoc:javadoc
+```
+
+This will generate the documentation in:
+
+target/reports/apidocs/
+
+### ✅ 2. Open Javadoc in Browser
+
+Once generated, open the documentation using:
+
+### Open Javadoc in Browser
+
+```sh
+start target/reports/apidocs/index.html  # Windows CMD
+invoke-item target/reports/apidocs/index.html  # Windows PowerShell
+xdg-open target/reports/apidocs/index.html  # Linux
+open target/reports/apidocs/index.html  # macOS
+```
+
+## API Documentation Swagger
 
 For available endpoints and detailed API usage, refer to the Swagger documentation (swagger.json).
 
