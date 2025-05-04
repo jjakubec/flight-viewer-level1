@@ -51,7 +51,6 @@ public class DepartureService {
                         .build())
                 .retrieve()
                 .bodyToMono(Departure[].class)
-                .retryWhen(Retry.fixedDelay(3, Duration.ofSeconds(5)))
                 .map(Arrays::asList);
     }
 }
