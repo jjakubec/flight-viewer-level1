@@ -28,6 +28,10 @@ mvn test
 
 This command will execute all the tests in the project.
 
+## API Documentation
+
+For available endpoints and detailed API usage, refer to the Swagger documentation (swagger.json).
+
 ## Notes
 
 The application returns HTTP status messages in Czech language to provide user-friendly responses in Postman and other API testing tools.

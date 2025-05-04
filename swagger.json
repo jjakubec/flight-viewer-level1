@@ -1,1 +1,200 @@
-{"openapi":"3.0.1","info":{"title":"FlightViewer API","description":"API documentation in JSON format","version":"1.0"},"servers":[{"url":"http://localhost:8080","description":"Generated server url"}],"paths":{"/api/departures":{"get":{"tags":["departure-api"],"operationId":"departuresGet","parameters":[{"name":"airport","in":"query","required":true,"schema":{"type":"string"}},{"name":"begin","in":"query","required":true,"schema":{"type":"string","format":"date-time"}},{"name":"end","in":"query","required":true,"schema":{"type":"string","format":"date-time"}}],"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"type":"array","items":{"$ref":"#/components/schemas/Departure"}}}}}}}}},"components":{"schemas":{"Departure":{"type":"object","properties":{"icao24":{"type":"string"},"firstSeen":{"type":"integer","format":"int64"},"estDepartureAirport":{"type":"string"},"lastSeen":{"type":"integer","format":"int64"},"estArrivalAirport":{"type":"string"},"callsign":{"type":"string"},"estDepartureAirportHorizDistance":{"type":"integer","format":"int32"},"estDepartureAirportVertDistance":{"type":"integer","format":"int32"},"estArrivalAirportHorizDistance":{"type":"integer","format":"int32"},"estArrivalAirportVertDistance":{"type":"integer","format":"int32"},"departureAirportCandidatesCount":{"type":"integer","format":"int32"},"arrivalAirportCandidatesCount":{"type":"integer","format":"int32"}}}}}}
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "FlightViewer API",
+    "description": "API documentation in JSON format",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080",
+      "description": "Generated server url"
+    }
+  ],
+  "paths": {
+    "/api/departures": {
+      "get": {
+        "tags": [
+          "departure-api"
+        ],
+        "operationId": "departuresGet",
+        "parameters": [
+          {
+            "name": "airport",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "begin",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "end",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Departure"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - Invalid Time Range",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Chyba: Počáteční čas musí být před konečným časem!"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - Time Range Exceeds Limit",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Chyba: Požadavek přesahuje povolených 7 dnů!"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - Invalid Time Format",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Chyba: Neplatný formát času! Použijte ISO 8601 (např. 2025-05-03T16:14:17)"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found - Airport Not Exists",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Chyba: Zadané letiště neexistuje!"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests - API Rate Limit Exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Chyba: API OpenSky Network odmítlo požadavek kvůli příliš mnoha požadavkům. Zkuste to později."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Departure": {
+        "type": "object",
+        "properties": {
+          "icao24": {
+            "type": "string"
+          },
+          "firstSeen": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "estDepartureAirport": {
+            "type": "string"
+          },
+          "lastSeen": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "estArrivalAirport": {
+            "type": "string"
+          },
+          "callsign": {
+            "type": "string"
+          },
+          "estDepartureAirportHorizDistance": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "estDepartureAirportVertDistance": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "estArrivalAirportHorizDistance": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "estArrivalAirportVertDistance": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "departureAirportCandidatesCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "arrivalAirportCandidatesCount": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      }
+    }
+  }
+}
