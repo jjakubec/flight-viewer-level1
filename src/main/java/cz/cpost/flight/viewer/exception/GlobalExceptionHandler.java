@@ -1,4 +1,4 @@
-package cz.cpost.flight.viewer.service;
+package cz.cpost.flight.viewer.exception;
 
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.http.HttpStatus;
