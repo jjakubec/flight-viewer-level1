@@ -28,6 +28,21 @@ mvn test
 
 This command will execute all the tests in the project.
 
+# API Testing with Postman
+
+To test the API endpoints using Postman, ensure that you send a **GET request** to the appropriate URL.
+
+For example, when testing departures, use:
+http://localhost:8080/api/departures?airport=EDDF&begin=2025-04-23T00:00:00&end=2025-04-30T00:00:00
+
+### Steps to Test:
+1. Open Postman and create a new request.
+2. Set the request type to **GET**.
+3. Enter the provided URL in the request field.
+4. Click **Send** to fetch the API response.
+
+Make sure the API server is running on **localhost:8080** before making requests.
+
 ## 📖 Generate and Open Javadoc Documentation
 
 ### ✅ 1. Generate Javadoc
