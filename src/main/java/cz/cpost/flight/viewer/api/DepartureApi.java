@@ -35,17 +35,17 @@ public class DepartureApi {
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime begin,
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime end) {
 
-        // Validace rozsahu času
+        // Time range validation
         if (begin.isAfter(end) || begin.isEqual(end)) {
             return new ResponseEntity("Chyba: Počáteční čas musí být před konečným časem!", HttpStatus.BAD_REQUEST);
         }
 
         long secondsBetween = ChronoUnit.SECONDS.between(begin, end);
-        if (secondsBetween > 604800) { // 7 dní v sekundách
+        if (secondsBetween > 604800) { // 7 days in seconds
             return new ResponseEntity("Chyba: Požadavek přesahuje povolených 7 dnů!", HttpStatus.BAD_REQUEST);
         }
 
-        // Pomalejší varianta
+        // Slower variant
         /*List<Departure> departures = departureService.getDepartures(
                 airport,
                 String.valueOf(begin.atZone(ZoneId.of("Europe/Prague")).toEpochSecond()),
@@ -54,7 +54,7 @@ public class DepartureApi {
 
         return ResponseEntity.ok(departures);*/
 
-        // Rychlejší varianta
+        // Faster variant
         Mono<List<Departure>> departures = departureService.getDepartures(
                 airport,
                 String.valueOf(begin.atZone(ZoneId.of("Europe/Prague")).toEpochSecond()),
