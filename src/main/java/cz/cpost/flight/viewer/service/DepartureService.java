@@ -34,7 +34,7 @@ public class DepartureService {
                 .build();
     }
 
-    // Pomalejší varianta
+    // Slower variant
     /*public List<Departure> getDepartures(String airport, String begin, String end) {
         String url = String.format(apiUrl1, airport, begin, end);
 
@@ -43,7 +43,15 @@ public class DepartureService {
         return Arrays.asList(response.getBody());
     }*/
 
-    // Rychlejší varianta
+    // Faster variant
+    /**
+     * Fetches flight departure data from the OpenSky Network API using WebClient.
+     *
+     * @param airport The airport code for which to fetch departure data.
+     * @param begin   The start time for the data range (in seconds since epoch).
+     * @param end     The end time for the data range (in seconds since epoch).
+     * @return A Mono containing a list of Departure objects.
+     */
     public Mono<List<Departure>> getDepartures(String airport, String begin, String end) {
         return webClient.get()
                 .uri(uriBuilder -> uriBuilder
